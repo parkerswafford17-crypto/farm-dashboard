@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farm Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <h1>🌱 Farm Daily Dashboard</h1>
+    <p id="date"></p>
+
+    <label>Eggs Collected</label>
+    <input type="number" id="eggs" min="0">
+
+    <label>Milk (Liters)</label>
+    <input type="number" id="milk" min="0">
+
+    <label>Expenses ($)</label>
+    <input type="number" id="expenses" min="0">
+
+    <button onclick="submitData()">Submit</button>
+
+    <p id="status"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
