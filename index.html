@@ -9,173 +9,170 @@
 
 <style>
 :root {
-  --blue: #004990;
-  --light-blue: #e6f0fa;
-  --accent: #2563eb;
+  --blue:#004990;
+  --accent:#2563eb;
+  --light:#f5f7fa;
 }
 
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background: #f5f7fa;
+  margin:0;
+  font-family:'Roboto',sans-serif;
+  background:var(--light);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
-  background: var(--blue);
-  color: white;
+  background:var(--blue);
+  color:white;
 }
 
 .top-bar {
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  gap: 20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:15px 20px;
 }
 
 .logo {
-  font-size: 1.6em;
-  font-weight: 700;
+  font-size:1.6em;
+  font-weight:700;
 }
 
 .search {
-  flex: 1;
+  flex:1;
 }
 
 .search input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
-  font-size: 1em;
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:4px;
 }
 
-.header-links {
-  font-weight: bold;
-  cursor: pointer;
+.cart-link {
+  cursor:pointer;
+  font-weight:bold;
 }
 
-/* ===== CATEGORY NAV ===== */
+/* CATEGORY NAV */
 .category-nav {
-  background: #003366;
-  display: flex;
-  gap: 20px;
-  padding: 10px 20px;
-  overflow-x: auto;
+  background:#003366;
+  display:flex;
+  gap:20px;
+  padding:10px 20px;
+  overflow-x:auto;
 }
 
 .category-nav span {
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 .hero {
-  background: linear-gradient(to right, #004990, #2563eb);
-  color: white;
-  padding: 50px 20px;
-  text-align: center;
+  background:linear-gradient(to right,#004990,#2563eb);
+  color:white;
+  padding:50px 20px;
+  text-align:center;
 }
 
 .hero h1 {
-  font-size: 2.5em;
+  font-size:2.5em;
 }
 
-.hero p {
-  font-size: 1.2em;
-}
-
-/* ===== MAIN ===== */
+/* MAIN */
 main {
-  max-width: 1300px;
-  margin: auto;
-  padding: 30px 20px;
+  max-width:1300px;
+  margin:auto;
+  padding:30px 20px;
 }
 
-/* ===== TABS ===== */
+.section { display:none; }
+.section.active { display:block; }
+
+/* TABS */
 .shop-tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:20px;
 }
 
 .shop-tab {
-  background: white;
-  border: 2px solid var(--blue);
-  color: var(--blue);
-  padding: 10px 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
+  padding:10px 16px;
+  border:2px solid var(--blue);
+  background:white;
+  color:var(--blue);
+  font-weight:bold;
+  cursor:pointer;
+  border-radius:4px;
 }
 
 .shop-tab.active {
-  background: var(--blue);
-  color: white;
+  background:var(--blue);
+  color:white;
 }
 
-/* ===== PRODUCTS ===== */
+/* PRODUCTS */
 .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 
 .product {
-  background: white;
-  border-radius: 6px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background:white;
+  padding:15px;
+  border-radius:6px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
-.product h3 {
-  font-size: 1.1em;
+.product img {
+  width:100%;
+  height:160px;
+  object-fit:contain;
+  margin-bottom:10px;
 }
 
 .price {
-  color: var(--blue);
-  font-weight: bold;
-  margin: 10px 0;
+  font-weight:bold;
+  color:var(--blue);
+  margin:8px 0;
 }
 
 .product button {
-  width: 100%;
-  padding: 10px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+  width:100%;
+  padding:10px;
+  background:var(--accent);
+  color:white;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-/* ===== CART ===== */
+/* CART */
 #cart-items {
-  list-style: none;
-  padding: 0;
+  list-style:none;
+  padding:0;
 }
 
 #cart-items li {
-  background: white;
-  padding: 10px;
-  margin-bottom: 8px;
-  border-radius: 4px;
+  background:white;
+  padding:10px;
+  margin-bottom:8px;
+  border-radius:4px;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
-  background: #e6f0fa;
-  padding: 30px 20px;
-  text-align: center;
-  margin-top: 40px;
+  background:#e6f0fa;
+  padding:30px;
+  text-align:center;
+  margin-top:40px;
 }
-
-/* ===== UTIL ===== */
-.section { display: none; }
-.section.active { display: block; }
 </style>
 </head>
 
@@ -187,15 +184,19 @@ footer {
     <div class="search">
       <input placeholder="Search tools, lumber, plumbing..." />
     </div>
-    <div class="header-links" onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</div>
+    <div class="cart-link" onclick="showPage('cart')">
+      Cart (<span id="cartCount">0</span>)
+    </div>
   </div>
 
   <div class="category-nav">
     <span onclick="showPage('shop')">Shop</span>
     <span onclick="showCategory('lumber')">Lumber</span>
     <span onclick="showCategory('tools')">Tools</span>
+    <span onclick="showCategory('fasteners')">Fasteners</span>
     <span onclick="showCategory('electrical')">Electrical</span>
     <span onclick="showCategory('plumbing')">Plumbing</span>
+    <span onclick="showCategory('paint')">Paint</span>
     <span onclick="showPage('contact')">Contact</span>
   </div>
 </header>
@@ -210,40 +211,80 @@ footer {
 <!-- SHOP -->
 <div id="shop" class="section active">
 
-  <div class="shop-tabs">
-    <button class="shop-tab active" onclick="showCategory('lumber', this)">Lumber</button>
-    <button class="shop-tab" onclick="showCategory('tools', this)">Tools</button>
-    <button class="shop-tab" onclick="showCategory('fasteners', this)">Fasteners</button>
-    <button class="shop-tab" onclick="showCategory('electrical', this)">Electrical</button>
-    <button class="shop-tab" onclick="showCategory('plumbing', this)">Plumbing</button>
-    <button class="shop-tab" onclick="showCategory('paint', this)">Paint</button>
-  </div>
+<div class="shop-tabs">
+  <button class="shop-tab active" onclick="showCategory('lumber',this)">Lumber</button>
+  <button class="shop-tab" onclick="showCategory('tools',this)">Tools</button>
+  <button class="shop-tab" onclick="showCategory('fasteners',this)">Fasteners</button>
+  <button class="shop-tab" onclick="showCategory('electrical',this)">Electrical</button>
+  <button class="shop-tab" onclick="showCategory('plumbing',this)">Plumbing</button>
+  <button class="shop-tab" onclick="showCategory('paint',this)">Paint</button>
+</div>
 
-  <div id="lumber" class="products">
-    <div class="product"><h3>2x4 Lumber</h3><div class="price">$4.99</div><button onclick="add('2x4 Lumber',4.99)">Add to Cart</button></div>
-    <div class="product"><h3>Plywood Sheet</h3><div class="price">$29.99</div><button onclick="add('Plywood Sheet',29.99)">Add to Cart</button></div>
+<div id="lumber" class="products">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+    <h3>2x4 Lumber</h3>
+    <div class="price">$4.99</div>
+    <button onclick="add('2x4 Lumber',4.99)">Add to Cart</button>
   </div>
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e">
+    <h3>Plywood Sheet</h3>
+    <div class="price">$29.99</div>
+    <button onclick="add('Plywood Sheet',29.99)">Add to Cart</button>
+  </div>
+</div>
 
-  <div id="tools" class="products" style="display:none;">
-    <div class="product"><h3>Hammer</h3><div class="price">$12.99</div><button onclick="add('Hammer',12.99)">Add</button></div>
-    <div class="product"><h3>Cordless Drill</h3><div class="price">$79.99</div><button onclick="add('Drill',79.99)">Add</button></div>
+<div id="tools" class="products" style="display:none;">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1590080877777-8c9e3c61bcb4">
+    <h3>Hammer</h3>
+    <div class="price">$12.99</div>
+    <button onclick="add('Hammer',12.99)">Add</button>
   </div>
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1586864387789-628af9feed72">
+    <h3>Cordless Drill</h3>
+    <div class="price">$79.99</div>
+    <button onclick="add('Drill',79.99)">Add</button>
+  </div>
+</div>
 
-  <div id="fasteners" class="products" style="display:none;">
-    <div class="product"><h3>Box of Screws</h3><div class="price">$6.99</div><button onclick="add('Screws',6.99)">Add</button></div>
+<div id="fasteners" class="products" style="display:none;">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1616627986767-53edc0b0c8e4">
+    <h3>Box of Screws</h3>
+    <div class="price">$6.99</div>
+    <button onclick="add('Screws',6.99)">Add</button>
   </div>
+</div>
 
-  <div id="electrical" class="products" style="display:none;">
-    <div class="product"><h3>Wire Roll</h3><div class="price">$24.99</div><button onclick="add('Wire Roll',24.99)">Add</button></div>
+<div id="electrical" class="products" style="display:none;">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+    <h3>Wire Roll</h3>
+    <div class="price">$24.99</div>
+    <button onclick="add('Wire Roll',24.99)">Add</button>
   </div>
+</div>
 
-  <div id="plumbing" class="products" style="display:none;">
-    <div class="product"><h3>PVC Pipe</h3><div class="price">$9.99</div><button onclick="add('PVC Pipe',9.99)">Add</button></div>
+<div id="plumbing" class="products" style="display:none;">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1616627459509-25e5c5b5b8f0">
+    <h3>PVC Pipe</h3>
+    <div class="price">$9.99</div>
+    <button onclick="add('PVC Pipe',9.99)">Add</button>
   </div>
+</div>
 
-  <div id="paint" class="products" style="display:none;">
-    <div class="product"><h3>Paint Can</h3><div class="price">$25.99</div><button onclick="add('Paint Can',25.99)">Add</button></div>
+<div id="paint" class="products" style="display:none;">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344">
+    <h3>Paint Can</h3>
+    <div class="price">$25.99</div>
+    <button onclick="add('Paint Can',25.99)">Add</button>
   </div>
+</div>
 
 </div>
 
@@ -266,30 +307,30 @@ footer {
 </main>
 
 <footer>
-  © Jellico Hardware — Built Like the Pros
+  © Jellico Hardware
 </footer>
 
 <script>
-let cart = [];
-let total = 0;
+let cart=[];
+let total=0;
 
-function add(name, price){
-  cart.push({name, price});
-  total += price;
-  document.getElementById("cartCount").textContent = cart.length;
+function add(name,price){
+  cart.push({name,price});
+  total+=price;
+  document.getElementById("cartCount").textContent=cart.length;
   loadCart();
 }
 
 function loadCart(){
-  const list = document.getElementById("cart-items");
+  const list=document.getElementById("cart-items");
   if(!list) return;
-  list.innerHTML = "";
+  list.innerHTML="";
   cart.forEach(i=>{
-    const li = document.createElement("li");
-    li.textContent = `${i.name} - $${i.price.toFixed(2)}`;
+    const li=document.createElement("li");
+    li.textContent=`${i.name} - $${i.price.toFixed(2)}`;
     list.appendChild(li);
   });
-  document.getElementById("total").textContent = total.toFixed(2);
+  document.getElementById("total").textContent=total.toFixed(2);
 }
 
 function showPage(id){
@@ -297,7 +338,7 @@ function showPage(id){
   document.getElementById(id).classList.add("active");
 }
 
-function showCategory(id, btn){
+function showCategory(id,btn){
   document.querySelectorAll(".products").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="grid";
   document.querySelectorAll(".shop-tab").forEach(b=>b.classList.remove("active"));
