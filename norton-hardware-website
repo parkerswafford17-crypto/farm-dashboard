@@ -144,37 +144,58 @@
     <h2>Materials</h2>
 
     <div class="tabs">
-      <button class="tab active" onclick="openTab(event, 'tools')">Tools</button>
-      <button class="tab" onclick="openTab(event, 'lumber')">Lumber</button>
-      <button class="tab" onclick="openTab(event, 'fasteners')">Fasteners</button>
-      <button class="tab" onclick="openTab(event, 'paint')">Paint</button>
-      <button class="tab" onclick="openTab(event, 'electrical')">Electrical</button>
-      <button class="tab" onclick="openTab(event, 'plumbing')">Plumbing</button>
+      <button class="tab active" onclick="openTab(event, 'tools')">🛠 Tools</button>
+      <button class="tab" onclick="openTab(event, 'lumber')">🪵 Lumber</button>
+      <button class="tab" onclick="openTab(event, 'fasteners')">🔩 Fasteners</button>
+      <button class="tab" onclick="openTab(event, 'paint')">🎨 Paint</button>
+      <button class="tab" onclick="openTab(event, 'electrical')">💡 Electrical</button>
+      <button class="tab" onclick="openTab(event, 'plumbing')">🚰 Plumbing</button>
+      <button class="tab" onclick="openTab(event, 'concrete')">🏗 Concrete</button>
+      <button class="tab" onclick="openTab(event, 'roofing')">🏠 Roofing</button>
+      <button class="tab" onclick="openTab(event, 'hvac')">❄️ HVAC</button>
+      <button class="tab" onclick="openTab(event, 'safety')">🦺 Safety Gear</button>
     </div>
 
     <div id="tools" class="tab-content active">
-      <div class="card"><h3>Hand & Power Tools</h3><p>Professional-grade tools for construction, repair, and DIY projects.</p></div>
+      <div class="card"><h3>Tools</h3><ul><li>Hammer – $14.99</li><li>Cordless Drill – $89.99</li><li>Circular Saw – $129.99</li></ul></div>
     </div>
 
     <div id="lumber" class="tab-content">
-      <div class="card"><h3>Lumber & Sheet Goods</h3><p>Quality wood products cut and stocked for reliability and strength.</p></div>
+      <div class="card"><h3>Lumber</h3><ul><li>2x4 Stud (8ft) – $4.25</li><li>Plywood Sheet – $29.99</li><li>Pressure Treated 4x4 – $14.99</li></ul></div>
     </div>
 
     <div id="fasteners" class="tab-content">
-      <div class="card"><h3>Nails, Screws & Bolts</h3><p>A full range of fasteners for every application.</p></div>
+      <div class="card"><h3>Fasteners</h3><ul><li>Wood Screws (1lb) – $7.99</li><li>Framing Nails – $54.99</li><li>Lag Bolts – $1.49 ea</li></ul></div>
     </div>
 
     <div id="paint" class="tab-content">
-      <div class="card"><h3>Paint & Finishes</h3><p>Interior and exterior paints, stains, and protective coatings.</p></div>
+      <div class="card"><h3>Paint</h3><ul><li>Interior Paint (1 gal) – $34.99</li><li>Exterior Paint – $39.99</li><li>Wood Stain – $24.99</li></ul></div>
     </div>
 
     <div id="electrical" class="tab-content">
-      <div class="card"><h3>Electrical Supplies</h3><p>Wiring, outlets, breakers, lighting, and accessories.</p></div>
+      <div class="card"><h3>Electrical</h3><ul><li>12/2 Wire (100ft) – $89.99</li><li>LED Light Fixture – $29.99</li><li>Outlet Pack – $12.99</li></ul></div>
     </div>
 
     <div id="plumbing" class="tab-content">
-      <div class="card"><h3>Plumbing Materials</h3><p>Pipes, fittings, fixtures, and repair essentials.</p></div>
+      <div class="card"><h3>Plumbing</h3><ul><li>PVC Pipe (10ft) – $8.99</li><li>Faucet – $79.99</li><li>Pipe Fittings – from $1.99</li></ul></div>
     </div>
+
+    <div id="concrete" class="tab-content">
+      <div class="card"><h3>Concrete</h3><ul><li>Concrete Mix (80lb) – $7.49</li><li>Rebar – $6.99</li><li>Mortar Mix – $8.99</li></ul></div>
+    </div>
+
+    <div id="roofing" class="tab-content">
+      <div class="card"><h3>Roofing</h3><ul><li>Asphalt Shingles – $32.99</li><li>Roofing Felt – $19.99</li><li>Flashing – $9.99</li></ul></div>
+    </div>
+
+    <div id="hvac" class="tab-content">
+      <div class="card"><h3>HVAC</h3><ul><li>Air Filter – $14.99</li><li>Duct Pipe – $24.99</li><li>Thermostat – $89.99</li></ul></div>
+    </div>
+
+    <div id="safety" class="tab-content">
+      <div class="card"><h3>Safety Gear</h3><ul><li>Hard Hat – $19.99</li><li>Work Gloves – $12.99</li><li>Safety Glasses – $9.99</li></ul></div>
+    </div>
+
   </section>
 
   <script>
@@ -187,29 +208,13 @@
   </script>
 
   <style>
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .tab {
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: white;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .tab.active {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .tab { padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid #e5e7eb; background: white; cursor: pointer; font-weight: 500; }
+    .tab.active { background: var(--accent); border-color: var(--accent); }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 0.5rem; }
   </style>
 
   <section id="services">
