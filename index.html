@@ -11,6 +11,7 @@
   --blue:#004990;
   --accent:#2563eb;
   --light:#f5f7fa;
+  --hover:#003366;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Roboto,sans-serif;background:var(--light)}
@@ -21,36 +22,46 @@ header{background:var(--blue);color:white}
 .search input{width:100%;padding:10px;border:none;border-radius:4px}
 .cart-link{font-weight:bold;cursor:pointer}
 
-.hero{background:linear-gradient(to right,#004990,#2563eb);color:white;text-align:center;padding:40px}
+.hero{background:linear-gradient(to right,#004990,#2563eb);color:white;text-align:center;padding:60px 20px;position:relative}
+.hero h1{font-size:2.2em;margin-bottom:10px}
+.hero p{margin-bottom:20px;font-size:1.1em}
+.hero button{padding:12px 25px;background:#fff;color:var(--blue);border:none;border-radius:6px;font-weight:bold;cursor:pointer;transition:0.3s}
+.hero button:hover{background:#f0f0f0}
 
 .container{display:flex;max-width:1400px;margin:auto}
-.sidebar{width:220px;background:white;padding:15px;border-radius:6px;margin:20px}
-.sidebar h3{margin-top:0}
-.sidebar div{cursor:pointer;padding:8px;font-weight:bold;color:#004990}
+.sidebar{width:220px;background:white;padding:15px;border-radius:10px;margin:20px}
+.sidebar h3{margin-top:0;font-size:1.1em}
+.sidebar div{cursor:pointer;padding:10px;font-weight:bold;color:#004990;border-radius:6px;transition:0.2s}
 .sidebar div:hover{background:#eef3fb}
 
 main{flex:1;padding:20px}
 .section{display:none}
 .section.active{display:block}
 
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.product{background:white;padding:15px;border-radius:6px;box-shadow:0 4px 10px rgba(0,0,0,.08)}
-.product img{width:100%;height:160px;object-fit:cover;border-radius:4px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.product{background:white;padding:15px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:0.3s}
+.product:hover{transform:translateY(-3px);box-shadow:0 6px 15px rgba(0,0,0,.12)}
+.product img{width:100%;height:160px;object-fit:cover;border-radius:6px}
 .price{color:var(--blue);font-weight:bold}
 .sale{color:red;font-weight:bold}
 .qty{width:60px;padding:6px;margin-top:5px}
-.product button{width:100%;padding:10px;margin-top:8px;background:var(--accent);color:white;border:none;border-radius:4px}
+.product button{width:100%;padding:10px;margin-top:8px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;transition:0.2s}
+.product button:hover{background:var(--hover)}
 
-.cart-item{background:white;padding:10px;margin-bottom:8px;border-radius:4px;display:flex;justify-content:space-between}
+.cart-item{background:white;padding:10px;margin-bottom:8px;border-radius:6px;display:flex;justify-content:space-between;align-items:center}
+.cart-item span{margin-right:10px}
 
 footer{background:#e6f0fa;padding:20px;text-align:center}
 footer span{margin:0 10px;font-weight:bold;color:#004990;cursor:pointer}
 
-.admin input, .admin select{width:100%;padding:6px;margin-bottom:6px}
+.admin input, .admin select{width:100%;padding:6px;margin-bottom:6px;border-radius:4px;border:1px solid #ccc}
+.admin label{font-weight:bold;margin-top:8px;display:block}
+.admin button{width:100%;padding:10px;margin-top:10px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;transition:0.2s}
+.admin button:hover{background:var(--hover)}
 
 @media(max-width:800px){
   .container{flex-direction:column}
-  .sidebar{width:auto}
+  .sidebar{width:auto;margin:10px 0}
 }
 </style>
 </head>
@@ -71,6 +82,7 @@ Cart (<span id="cartCount">0</span>)
 <div class="hero">
 <h1>Your Local Hardware Store</h1>
 <p>Tools • Lumber • Farm • Home Improvement</p>
+<button onclick="showPage('shop')">Shop Now</button>
 </div>
 
 <div class="container">
@@ -106,20 +118,21 @@ Cart (<span id="cartCount">0</span>)
 <h2>Admin Panel</h2>
 <div class="admin">
 <h3>Add New Product</h3>
-<input id="newName" placeholder="Product Name">
-<input id="newPrice" placeholder="Price">
-<input id="newCategory" placeholder="Category">
-<input id="newImage" placeholder="Image URL">
-<input type="checkbox" id="newSale"> Sale/Clearance
+<label>Product Name</label><input id="newName" placeholder="Product Name">
+<label>Price</label><input id="newPrice" placeholder="Price">
+<label>Category</label><input id="newCategory" placeholder="Category">
+<label>Image URL</label><input id="newImage" placeholder="Image URL">
+<label><input type="checkbox" id="newSale"> Sale/Clearance</label>
 <button onclick="addNewProduct()">Add Product</button>
 
 <h3>Edit Existing Product</h3>
+<label>Select Product</label>
 <select id="editSelect" onchange="populateEditFields()">
 <option value="">Select a product</option>
 </select>
-<input id="editPrice" placeholder="New Price">
-<input id="editImage" placeholder="New Image URL">
-<input type="checkbox" id="editSale"> Sale/Clearance
+<label>New Price</label><input id="editPrice" placeholder="New Price">
+<label>New Image URL</label><input id="editImage" placeholder="New Image URL">
+<label><input type="checkbox" id="editSale"> Sale/Clearance</label>
 <button onclick="editProduct()">Update Product</button>
 </div>
 </div>
@@ -127,11 +140,11 @@ Cart (<span id="cartCount">0</span>)
 </div>
 
 <footer>
-© Jellico Hardware
+© Jellico Hardware | <span>Privacy</span> | <span>Terms</span> | <span>Returns</span>
 </footer>
 
 <script>
-// Product data
+// Products array
 let products=[
 {name:"2x4 Lumber",price:4.99,category:"lumber",image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c",sale:false},
 {name:"Pressure Treated Post",price:14.99,category:"lumber",image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e",sale:false},
@@ -186,7 +199,7 @@ function populateEditFields(){
   }
 }
 
-// Cart functions
+// Cart
 let cart=[],total=0;
 function addItem(btn,name,price){
   let qty=parseInt(btn.previousElementSibling.value);
@@ -201,26 +214,34 @@ function updateCart(){
   const list=document.getElementById("cartItems");
   if(!list) return;
   list.innerHTML="";
-  cart.forEach((item,i)=>{
-    const d=document.createElement("div");
-    d.className="cart-item";
-    d.innerHTML=`${item.name} - $${item.price.toFixed(2)} <button onclick="removeItem(${i})">X</button>`;
-    list.appendChild(d);
-  });
+  let counts={};
+  cart.forEach(item=>{counts[item.name]=(counts[item.name]||0)+1;});
+  for(let key in counts){
+    const item=cart.find(p=>p.name===key);
+    const div=document.createElement("div");
+    div.className="cart-item";
+    div.innerHTML=`<span>${key}</span><span>Qty: ${counts[key]}</span><span>Subtotal: $${(item.price*counts[key]).toFixed(2)}</span>
+      <button onclick="removeItem('${key}')">X</button>`;
+    list.appendChild(div);
+  }
   document.getElementById("total").textContent=total.toFixed(2);
 }
-function removeItem(i){
-  total-=cart[i].price;
-  cart.splice(i,1);
-  updateCart();
+function removeItem(name){
+  const idx=cart.findIndex(p=>p.name===name);
+  if(idx>-1){
+    total-=cart[idx].price;
+    cart.splice(idx,1);
+    updateCart();
+  }
 }
 
+// Navigation
 function showPage(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-// Filtering
+// Filter
 function filterCategory(cat){
   document.querySelectorAll(".product").forEach(p=>{
     p.style.display=(cat==="all"||p.classList.contains(cat)||(cat==="sale"&&p.classList.contains("sale")) )?"block":"none";
@@ -233,7 +254,7 @@ function filterProducts(){
   });
 }
 
-// Admin functions
+// Admin
 function addNewProduct(){
   const name=document.getElementById("newName").value;
   const price=parseFloat(document.getElementById("newPrice").value);
@@ -246,7 +267,6 @@ function addNewProduct(){
     alert("Product added!");
   }else alert("Fill all fields!");
 }
-
 function editProduct(){
   const idx=parseInt(document.getElementById("editSelect").value);
   if(products[idx]){
