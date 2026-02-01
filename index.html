@@ -5,16 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jellico Hardware Online Store</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
-  header { background:#2f5d3a; color:white; padding:20px; text-align:center; }
+  /* General */
+  body { font-family: Arial, sans-serif; margin:0; background:#eaf0fb; color:#1a1a1a; }
+  header { background:#1e3a8a; color:white; padding:20px; text-align:center; }
   nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; cursor:pointer; }
+  nav a:hover { text-decoration:underline; }
   main { padding:20px; }
   .section { display:none; }
   .active { display:block; }
+
+  /* Products Grid */
   .products { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px; }
-  .product { background:white; padding:15px; border-radius:8px; text-align:center; }
-  button, .button { background:#2f5d3a; color:white; border:none; padding:10px; cursor:pointer; border-radius:5px; text-decoration:none; }
-  footer { text-align:center; padding:15px; color:#666; margin-top:20px; }
+  .product { background:white; padding:15px; border-radius:8px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  h3 { margin-bottom:5px; }
+
+  /* Buttons */
+  button, .button { background:#1e3a8a; color:white; border:none; padding:10px; cursor:pointer; border-radius:5px; text-decoration:none; }
+  button:hover, .button:hover { background:#3b59c4; }
+
+  /* Footer */
+  footer { text-align:center; padding:15px; color:#1a1a1a; margin-top:20px; background:#dbe4fb; }
+
+  /* Cart */
   ul { list-style:none; padding:0; }
   li { margin:5px 0; }
 </style>
@@ -42,38 +54,49 @@
   <!-- Shop Page -->
   <div id="shop" class="section">
     <h2>Shop</h2>
+    
+    <h3>Lumber</h3>
     <div class="products">
-      <div class="product">
-        <h3>2x4 Lumber</h3>
-        <p>$4.99</p>
-        <button onclick="addToCart('2x4 Lumber', 4.99)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <h3>Plywood Sheet</h3>
-        <p>$29.99</p>
-        <button onclick="addToCart('Plywood Sheet', 29.99)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <h3>Hammer</h3>
-        <p>$12.99</p>
-        <button onclick="addToCart('Hammer', 12.99)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <h3>Cordless Drill</h3>
-        <p>$79.99</p>
-        <button onclick="addToCart('Cordless Drill', 79.99)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <h3>Box of Screws</h3>
-        <p>$6.99</p>
-        <button onclick="addToCart('Box of Screws', 6.99)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <h3>Box of Nails</h3>
-        <p>$5.99</p>
-        <button onclick="addToCart('Box of Nails', 5.99)">Add to Cart</button>
-      </div>
+      <div class="product"><h3>2x4 Lumber</h3><p>$4.99</p><button onclick="addToCart('2x4 Lumber',4.99)">Add to Cart</button></div>
+      <div class="product"><h3>Plywood Sheet</h3><p>$29.99</p><button onclick="addToCart('Plywood Sheet',29.99)">Add to Cart</button></div>
+      <div class="product"><h3>Treated Lumber</h3><p>$6.99</p><button onclick="addToCart('Treated Lumber',6.99)">Add to Cart</button></div>
     </div>
+    
+    <h3>Tools</h3>
+    <div class="products">
+      <div class="product"><h3>Hammer</h3><p>$12.99</p><button onclick="addToCart('Hammer',12.99)">Add to Cart</button></div>
+      <div class="product"><h3>Cordless Drill</h3><p>$79.99</p><button onclick="addToCart('Cordless Drill',79.99)">Add to Cart</button></div>
+      <div class="product"><h3>Screwdriver Set</h3><p>$15.99</p><button onclick="addToCart('Screwdriver Set',15.99)">Add to Cart</button></div>
+    </div>
+
+    <h3>Fasteners</h3>
+    <div class="products">
+      <div class="product"><h3>Box of Screws</h3><p>$6.99</p><button onclick="addToCart('Box of Screws',6.99)">Add to Cart</button></div>
+      <div class="product"><h3>Box of Nails</h3><p>$5.99</p><button onclick="addToCart('Box of Nails',5.99)">Add to Cart</button></div>
+      <div class="product"><h3>Bolts Pack</h3><p>$7.99</p><button onclick="addToCart('Bolts Pack',7.99)">Add to Cart</button></div>
+    </div>
+
+    <h3>Electrical</h3>
+    <div class="products">
+      <div class="product"><h3>Wire Roll</h3><p>$24.99</p><button onclick="addToCart('Wire Roll',24.99)">Add to Cart</button></div>
+      <div class="product"><h3>Outlet & Switch</h3><p>$3.99</p><button onclick="addToCart('Outlet & Switch',3.99)">Add to Cart</button></div>
+      <div class="product"><h3>Extension Cord</h3><p>$14.99</p><button onclick="addToCart('Extension Cord',14.99)">Add to Cart</button></div>
+    </div>
+
+    <h3>Plumbing</h3>
+    <div class="products">
+      <div class="product"><h3>PVC Pipe</h3><p>$9.99</p><button onclick="addToCart('PVC Pipe',9.99)">Add to Cart</button></div>
+      <div class="product"><h3>PVC Fittings</h3><p>$4.99</p><button onclick="addToCart('PVC Fittings',4.99)">Add to Cart</button></div>
+      <div class="product"><h3>Faucet</h3><p>$19.99</p><button onclick="addToCart('Faucet',19.99)">Add to Cart</button></div>
+    </div>
+
+    <h3>Paint</h3>
+    <div class="products">
+      <div class="product"><h3>Paint Can</h3><p>$25.99</p><button onclick="addToCart('Paint Can',25.99)">Add to Cart</button></div>
+      <div class="product"><h3>Paint Brushes</h3><p>$7.99</p><button onclick="addToCart('Paint Brushes',7.99)">Add to Cart</button></div>
+      <div class="product"><h3>Paint Roller</h3><p>$9.99</p><button onclick="addToCart('Paint Roller',9.99)">Add to Cart</button></div>
+    </div>
+
   </div>
 
   <!-- Cart Page -->
@@ -90,7 +113,9 @@
     <p>📍 Jellico, TN</p>
     <p>📞 (555) 123-4567</p>
     <p>⏰ Mon–Sat: 8am–6pm</p>
+    <p>✉️ info@jellicohardware.com</p>
   </div>
+
 </main>
 
 <footer>© Jellico Hardware</footer>
