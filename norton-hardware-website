@@ -141,22 +141,76 @@
   </section>
 
   <section id="products">
-    <h2>Our Products</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Tools & Equipment</h3>
-        <p>From power tools to hand tools, we carry dependable brands contractors trust every day.</p>
-      </div>
-      <div class="card">
-        <h3>Building Materials</h3>
-        <p>Lumber, fasteners, concrete supplies, and more—stocked for projects big and small.</p>
-      </div>
-      <div class="card">
-        <h3>Paint & Finishes</h3>
-        <p>Interior and exterior paints, stains, and coatings for long-lasting results.</p>
-      </div>
+    <h2>Materials</h2>
+
+    <div class="tabs">
+      <button class="tab active" onclick="openTab(event, 'tools')">Tools</button>
+      <button class="tab" onclick="openTab(event, 'lumber')">Lumber</button>
+      <button class="tab" onclick="openTab(event, 'fasteners')">Fasteners</button>
+      <button class="tab" onclick="openTab(event, 'paint')">Paint</button>
+      <button class="tab" onclick="openTab(event, 'electrical')">Electrical</button>
+      <button class="tab" onclick="openTab(event, 'plumbing')">Plumbing</button>
+    </div>
+
+    <div id="tools" class="tab-content active">
+      <div class="card"><h3>Hand & Power Tools</h3><p>Professional-grade tools for construction, repair, and DIY projects.</p></div>
+    </div>
+
+    <div id="lumber" class="tab-content">
+      <div class="card"><h3>Lumber & Sheet Goods</h3><p>Quality wood products cut and stocked for reliability and strength.</p></div>
+    </div>
+
+    <div id="fasteners" class="tab-content">
+      <div class="card"><h3>Nails, Screws & Bolts</h3><p>A full range of fasteners for every application.</p></div>
+    </div>
+
+    <div id="paint" class="tab-content">
+      <div class="card"><h3>Paint & Finishes</h3><p>Interior and exterior paints, stains, and protective coatings.</p></div>
+    </div>
+
+    <div id="electrical" class="tab-content">
+      <div class="card"><h3>Electrical Supplies</h3><p>Wiring, outlets, breakers, lighting, and accessories.</p></div>
+    </div>
+
+    <div id="plumbing" class="tab-content">
+      <div class="card"><h3>Plumbing Materials</h3><p>Pipes, fittings, fixtures, and repair essentials.</p></div>
     </div>
   </section>
+
+  <script>
+    function openTab(evt, tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+
+  <style>
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
 
   <section id="services">
     <h2>Services</h2>
@@ -180,7 +234,7 @@
     <div class="about">
       <h2>About Norton Hardware</h2>
       <p>
-        Norton Hardware has proudly served the community for decades. We believe in fair prices,
+        Norton Hardware has been helping our community since 2026, committed to integrity, fair prices, and dependable service from day one. We believe in fair prices,
         dependable products, and building long-term relationships with our customers.
       </p>
       <p>
