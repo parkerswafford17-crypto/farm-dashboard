@@ -46,7 +46,7 @@ main{flex:1;padding:20px}
 footer{background:#e6f0fa;padding:20px;text-align:center}
 footer span{margin:0 10px;font-weight:bold;color:#004990;cursor:pointer}
 
-.admin input{width:100%;padding:6px;margin-bottom:6px}
+.admin input, .admin select{width:100%;padding:6px;margin-bottom:6px}
 
 @media(max-width:800px){
   .container{flex-direction:column}
@@ -114,7 +114,9 @@ Cart (<span id="cartCount">0</span>)
 <button onclick="addNewProduct()">Add Product</button>
 
 <h3>Edit Existing Product</h3>
-<input id="editIndex" placeholder="Product Index (start 0)">
+<select id="editSelect" onchange="populateEditFields()">
+<option value="">Select a product</option>
+</select>
 <input id="editPrice" placeholder="New Price">
 <input id="editImage" placeholder="New Image URL">
 <input type="checkbox" id="editSale"> Sale/Clearance
@@ -141,12 +143,14 @@ let products=[
 {name:"Interior Paint",price:25.99,category:"paint",image:"https://images.unsplash.com/photo-1598300056393-4aac492f4344",sale:false}
 ];
 
+// Render shop
 function renderProducts(){
   const container=document.getElementById("productList");
   container.innerHTML="";
   products.forEach((p,i)=>{
     const div=document.createElement("div");
     div.className="product "+p.category+(p.sale?" sale":"");
+    div.dataset.index=i;
     div.innerHTML=`
       <img src="${p.image}">
       <h3>${p.name}</h3>
@@ -156,13 +160,36 @@ function renderProducts(){
     `;
     container.appendChild(div);
   });
+  updateAdminDropdown();
 }
 renderProducts();
 
+// Admin dropdown
+function updateAdminDropdown(){
+  const select=document.getElementById("editSelect");
+  select.innerHTML='<option value="">Select a product</option>';
+  products.forEach((p,i)=>{
+    const opt=document.createElement("option");
+    opt.value=i;
+    opt.text=p.name;
+    select.appendChild(opt);
+  });
+}
+
+// Populate edit fields
+function populateEditFields(){
+  const idx=parseInt(document.getElementById("editSelect").value);
+  if(products[idx]){
+    document.getElementById("editPrice").value=products[idx].price;
+    document.getElementById("editImage").value=products[idx].image;
+    document.getElementById("editSale").checked=products[idx].sale;
+  }
+}
+
+// Cart functions
 let cart=[],total=0;
 function addItem(btn,name,price){
-  let qty=btn.previousElementSibling.value;
-  qty=parseInt(qty);
+  let qty=parseInt(btn.previousElementSibling.value);
   for(let i=0;i<qty;i++){
     cart.push({name,price});
     total+=price;
@@ -187,11 +214,13 @@ function removeItem(i){
   cart.splice(i,1);
   updateCart();
 }
+
 function showPage(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
+// Filtering
 function filterCategory(cat){
   document.querySelectorAll(".product").forEach(p=>{
     p.style.display=(cat==="all"||p.classList.contains(cat)||(cat==="sale"&&p.classList.contains("sale")) )?"block":"none";
@@ -219,17 +248,17 @@ function addNewProduct(){
 }
 
 function editProduct(){
-  const index=parseInt(document.getElementById("editIndex").value);
-  const price=parseFloat(document.getElementById("editPrice").value);
-  const image=document.getElementById("editImage").value;
-  const sale=document.getElementById("editSale").checked;
-  if(products[index]){
-    if(!isNaN(price)) products[index].price=price;
-    if(image) products[index].image=image;
-    products[index].sale=sale;
+  const idx=parseInt(document.getElementById("editSelect").value);
+  if(products[idx]){
+    const price=parseFloat(document.getElementById("editPrice").value);
+    const image=document.getElementById("editImage").value;
+    const sale=document.getElementById("editSale").checked;
+    if(!isNaN(price)) products[idx].price=price;
+    if(image) products[idx].image=image;
+    products[idx].sale=sale;
     renderProducts();
     alert("Product updated!");
-  }else alert("Invalid index!");
+  }else alert("Select a product first!");
 }
 </script>
 
