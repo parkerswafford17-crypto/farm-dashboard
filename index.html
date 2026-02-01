@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jellico Hardware</title>
+<title>Jellico Hardware Store</title>
 
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f3f3;
+    background: #f4f4f4;
   }
 
   header {
@@ -20,53 +20,48 @@
   }
 
   .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     padding: 20px;
   }
 
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
+  h2 {
+    margin-top: 40px;
   }
 
-  .tab {
-    padding: 10px 16px;
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .product {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .product button {
+    background: #2f5d3a;
+    color: white;
     border: none;
-    background: #ddd;
+    padding: 8px 12px;
     cursor: pointer;
-    font-weight: bold;
     border-radius: 5px;
   }
 
-  .tab.active {
-    background: #2f5d3a;
-    color: white;
-  }
-
-  .section {
-    display: none;
+  .cart {
     background: white;
     padding: 20px;
     border-radius: 8px;
-  }
-
-  .section.active {
-    display: block;
-  }
-
-  label {
-    display: block;
-    margin: 10px 0;
+    margin-top: 40px;
   }
 
   footer {
-    margin-top: 40px;
     text-align: center;
+    padding: 20px;
     color: #666;
-    font-size: 14px;
   }
 </style>
 </head>
@@ -75,56 +70,57 @@
 
 <header>
   <h1>Jellico Hardware</h1>
-  <p>Daily Store Checklist</p>
+  <p>Your Local Online Hardware Store</p>
 </header>
 
 <div class="container">
 
-  <div class="tabs">
-    <button class="tab active" onclick="openTab('lumber')">Lumber</button>
-    <button class="tab" onclick="openTab('tools')">Tools</button>
-    <button class="tab" onclick="openTab('fasteners')">Fasteners</button>
-    <button class="tab" onclick="openTab('electrical')">Electrical</button>
-    <button class="tab" onclick="openTab('plumbing')">Plumbing</button>
-    <button class="tab" onclick="openTab('paint')">Paint</button>
+  <h2>Lumber</h2>
+  <div class="products">
+    <div class="product">
+      <h3>2x4 Lumber</h3>
+      <p>$4.99</p>
+      <button onclick="addToCart('2x4 Lumber', 4.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Plywood Sheet</h3>
+      <p>$29.99</p>
+      <button onclick="addToCart('Plywood Sheet', 29.99)">Add to Cart</button>
+    </div>
   </div>
 
-  <div id="lumber" class="section active">
-    <h2>Lumber</h2>
-    <label><input type="checkbox"> 2x4 & 2x6 stocked</label>
-    <label><input type="checkbox"> Plywood organized</label>
-    <label><input type="checkbox"> Treated lumber checked</label>
+  <h2>Tools</h2>
+  <div class="products">
+    <div class="product">
+      <h3>Hammer</h3>
+      <p>$12.99</p>
+      <button onclick="addToCart('Hammer', 12.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Cordless Drill</h3>
+      <p>$79.99</p>
+      <button onclick="addToCart('Cordless Drill', 79.99)">Add to Cart</button>
+    </div>
   </div>
 
-  <div id="tools" class="section">
-    <h2>Tools</h2>
-    <label><input type="checkbox"> Power tools charged</label>
-    <label><input type="checkbox"> Hand tools organized</label>
+  <h2>Fasteners</h2>
+  <div class="products">
+    <div class="product">
+      <h3>Box of Screws</h3>
+      <p>$6.99</p>
+      <button onclick="addToCart('Box of Screws', 6.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Box of Nails</h3>
+      <p>$5.99</p>
+      <button onclick="addToCart('Box of Nails', 5.99)">Add to Cart</button>
+    </div>
   </div>
 
-  <div id="fasteners" class="section">
-    <h2>Fasteners</h2>
-    <label><input type="checkbox"> Screws stocked</label>
-    <label><input type="checkbox"> Nails filled</label>
-    <label><input type="checkbox"> Bolts sorted</label>
-  </div>
-
-  <div id="electrical" class="section">
-    <h2>Electrical</h2>
-    <label><input type="checkbox"> Wire inventory checked</label>
-    <label><input type="checkbox"> Outlets & switches stocked</label>
-  </div>
-
-  <div id="plumbing" class="section">
-    <h2>Plumbing</h2>
-    <label><input type="checkbox"> PVC fittings stocked</label>
-    <label><input type="checkbox"> Pipe organized</label>
-  </div>
-
-  <div id="paint" class="section">
-    <h2>Paint</h2>
-    <label><input type="checkbox"> Paint desk clean</label>
-    <label><input type="checkbox"> Brushes & rollers stocked</label>
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <h3>Total: $<span id="total">0.00</span></h3>
   </div>
 
 </div>
@@ -134,12 +130,16 @@
 </footer>
 
 <script>
-  function openTab(tabId) {
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  let total = 0;
 
-    event.target.classList.add('active');
-    document.getElementById(tabId).classList.add('active');
+  function addToCart(item, price) {
+    const list = document.getElementById('cart-items');
+    const li = document.createElement('li');
+    li.textContent = `${item} - $${price.toFixed(2)}`;
+    list.appendChild(li);
+
+    total += price;
+    document.getElementById('total').textContent = total.toFixed(2);
   }
 </script>
 
