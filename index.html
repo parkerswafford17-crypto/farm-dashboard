@@ -44,13 +44,26 @@ header{background:var(--blue);color:white}
 /* HERO */
 .hero{
   background:linear-gradient(to right,#004990,#2563eb);
-  color:white;text-align:center;padding:40px 15px
+  color:white;text-align:center;padding:50px 20px
 }
+.hero h1{font-size:2.5em}
 
 /* MAIN */
 main{max-width:1300px;margin:auto;padding:20px}
 .section{display:none}
 .section.active{display:block}
+
+/* HOME */
+.home-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;margin-top:30px
+}
+.home-card{
+  background:white;padding:20px;border-radius:6px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08)
+}
+.home-card h3{color:var(--blue)}
 
 /* TABS */
 .shop-tabs{
@@ -58,8 +71,8 @@ main{max-width:1300px;margin:auto;padding:20px}
 }
 .shop-tab{
   padding:10px 16px;border:2px solid var(--blue);
-  background:white;color:var(--blue);font-weight:bold;
-  cursor:pointer;border-radius:4px
+  background:white;color:var(--blue);
+  font-weight:bold;cursor:pointer;border-radius:4px
 }
 .shop-tab.active{background:var(--blue);color:white}
 
@@ -110,7 +123,7 @@ footer{text-align:center;padding:20px;background:#e6f0fa}
 /* MOBILE */
 @media(max-width:600px){
   .top-bar{flex-direction:column;align-items:stretch}
-  .hero h1{font-size:1.8em}
+  .hero h1{font-size:1.9em}
 }
 </style>
 </head>
@@ -121,7 +134,7 @@ footer{text-align:center;padding:20px;background:#e6f0fa}
   <div class="top-bar">
     <div class="logo">Jellico Hardware</div>
     <div class="search">
-      <input placeholder="Search hardware..." />
+      <input placeholder="Search tools, lumber, paint..." />
     </div>
     <div class="cart-link" onclick="showPage('cart')">
       Cart (<span id="cartCount">0</span>)
@@ -129,20 +142,46 @@ footer{text-align:center;padding:20px;background:#e6f0fa}
   </div>
 
   <div class="category-nav">
+    <span onclick="showPage('home')">Home</span>
     <span onclick="showPage('shop')">Shop</span>
     <span onclick="showPage('contact')">Contact</span>
   </div>
 </header>
 
 <div class="hero">
-  <h1>Built for Home, Farm & Jobsite</h1>
-  <p>Local hardware • Big-store power</p>
+  <h1>Your Local Hardware Store</h1>
+  <p>Tools • Lumber • Farm • Home Improvement</p>
 </div>
 
 <main>
 
+<!-- HOME -->
+<div id="home" class="section active">
+  <h2>Welcome to Jellico Hardware</h2>
+  <p>Family-owned, locally trusted, and built to serve home, farm, and jobsite needs.</p>
+
+  <div class="home-grid">
+    <div class="home-card">
+      <h3>🪵 Lumber & Fencing</h3>
+      <p>Pressure treated boards, plywood, fence panels.</p>
+    </div>
+    <div class="home-card">
+      <h3>🔨 Tools</h3>
+      <p>Hand tools, power tools, and jobsite gear.</p>
+    </div>
+    <div class="home-card">
+      <h3>🚜 Farm Supplies</h3>
+      <p>Gates, wire, fencing, and hardware.</p>
+    </div>
+    <div class="home-card">
+      <h3>🎨 Paint & Home</h3>
+      <p>Interior, exterior, brushes, rollers.</p>
+    </div>
+  </div>
+</div>
+
 <!-- SHOP -->
-<div id="shop" class="section active">
+<div id="shop" class="section">
 
 <div class="shop-tabs">
   <button class="shop-tab active" onclick="showCategory('lumber',this)">Lumber</button>
@@ -158,6 +197,7 @@ footer{text-align:center;padding:20px;background:#e6f0fa}
   <div class="product"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"><h3>2x4 Lumber</h3><div class="price">$4.99</div><button onclick="add('2x4 Lumber',4.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e"><h3>Plywood Sheet</h3><div class="price">$29.99</div><button onclick="add('Plywood Sheet',29.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1604079628040-94301bb21b91"><h3>Fence Board</h3><div class="price">$6.99</div><button onclick="add('Fence Board',6.99)">Add</button></div>
+  <div class="product"><img src="https://images.unsplash.com/photo-1590080877777-8c9e3c61bcb4"><h3>Pressure Treated Post</h3><div class="price">$14.99</div><button onclick="add('PT Post',14.99)">Add</button></div>
 </div>
 
 <!-- TOOLS -->
@@ -165,18 +205,21 @@ footer{text-align:center;padding:20px;background:#e6f0fa}
   <div class="product"><img src="https://images.unsplash.com/photo-1590080877777-8c9e3c61bcb4"><h3>Hammer</h3><div class="price">$12.99</div><button onclick="add('Hammer',12.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1586864387789-628af9feed72"><h3>Drill</h3><div class="price">$79.99</div><button onclick="add('Drill',79.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4"><h3>Tool Set</h3><div class="price">$59.99</div><button onclick="add('Tool Set',59.99)">Add</button></div>
+  <div class="product"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"><h3>Measuring Tape</h3><div class="price">$9.99</div><button onclick="add('Measuring Tape',9.99)">Add</button></div>
 </div>
 
 <!-- FASTENERS -->
 <div id="fasteners" class="products" style="display:none">
   <div class="product"><img src="https://images.unsplash.com/photo-1616627986767-53edc0b0c8e4"><h3>Screws</h3><div class="price">$6.99</div><button onclick="add('Screws',6.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1581091870622-3b9c7c4d6f4f"><h3>Nails</h3><div class="price">$4.99</div><button onclick="add('Nails',4.99)">Add</button></div>
+  <div class="product"><img src="https://images.unsplash.com/photo-1621905252472-94301bb21b91"><h3>Bolts & Nuts</h3><div class="price">$8.99</div><button onclick="add('Bolts & Nuts',8.99)">Add</button></div>
 </div>
 
 <!-- ELECTRICAL -->
 <div id="electrical" class="products" style="display:none">
   <div class="product"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789"><h3>Wire Roll</h3><div class="price">$24.99</div><button onclick="add('Wire Roll',24.99)">Add</button></div>
   <div class="product"><img src="https://images.unsplash.com/photo-1616627987114-f0dbce76e1dd"><h3>Outlet</h3><div class="price">$2.99</div><button onclick="add('Outlet',2.99)">Add</button></div>
+  <div class="product"><img src="https://images.unsplash.com/photo-1604079628040-94301bb21b91"><h3>Breaker</h3><div class="price">$14.99</div><button onclick="add('Breaker',14.99)">Add</button></div>
 </div>
 
 <!-- PLUMBING -->
