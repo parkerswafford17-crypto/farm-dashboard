@@ -4,31 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jellico Hardware Online Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* General */
-  body { font-family: Arial, sans-serif; margin:0; background:#eaf0fb; color:#1a1a1a; }
-  header { background:#1e3a8a; color:white; padding:20px; text-align:center; }
-  nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; cursor:pointer; }
-  nav a:hover { text-decoration:underline; }
-  main { padding:20px; }
-  .section { display:none; }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: #f0f4fd;
+    color: #1a1a1a;
+  }
+  header {
+    background: #1e3a8a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 5px 10px;
+    transition: background 0.3s, border-radius 0.3s;
+  }
+  nav a:hover {
+    background: #3b59c4;
+    border-radius: 5px;
+  }
+  main {
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  h2, h3 {
+    color: #1e3a8a;
+  }
+
+  /* Sections */
+  .section { display:none; animation: fadeIn 0.5s ease-in; }
   .active { display:block; }
 
   /* Products Grid */
-  .products { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px; }
-  .product { background:white; padding:15px; border-radius:8px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  h3 { margin-bottom:5px; }
+  .products {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+  .product {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  .product h3 { margin-bottom:10px; font-size:1.2em; }
+  .product p { margin-bottom:15px; font-weight:600; color:#1e3a8a; }
 
   /* Buttons */
-  button, .button { background:#1e3a8a; color:white; border:none; padding:10px; cursor:pointer; border-radius:5px; text-decoration:none; }
-  button:hover, .button:hover { background:#3b59c4; }
-
-  /* Footer */
-  footer { text-align:center; padding:15px; color:#1a1a1a; margin-top:20px; background:#dbe4fb; }
+  button, .button {
+    background: #1e3a8a;
+    color: white;
+    border:none;
+    padding:10px 18px;
+    cursor:pointer;
+    border-radius:6px;
+    font-weight:700;
+    transition: background 0.3s, transform 0.2s;
+  }
+  button:hover, .button:hover {
+    background: #3b59c4;
+    transform: scale(1.05);
+  }
 
   /* Cart */
-  ul { list-style:none; padding:0; }
-  li { margin:5px 0; }
+  #cart-items { list-style:none; padding:0; }
+  #cart-items li { padding:8px 0; border-bottom:1px solid #e0e0e0; }
+
+  /* Footer */
+  footer {
+    text-align:center;
+    padding:20px;
+    color:#1a1a1a;
+    background:#dbe4fb;
+    margin-top:40px;
+    border-top:1px solid #c0ccee;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  /* Cart badge */
+  #cart-badge {
+    background:red;
+    color:white;
+    padding:2px 6px;
+    border-radius:50%;
+    font-size:0.8em;
+    vertical-align:super;
+    margin-left:5px;
+  }
+
+  /* Responsive */
+  @media(max-width:600px) {
+    nav a { display:block; margin:5px 0; }
+    .products { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -38,20 +131,20 @@
   <nav>
     <a onclick="showPage('home')">Home</a>
     <a onclick="showPage('shop')">Shop</a>
-    <a onclick="showPage('cart')">Cart</a>
+    <a onclick="showPage('cart')">Cart <span id="cart-badge">0</span></a>
     <a onclick="showPage('contact')">Contact</a>
   </nav>
 </header>
 
 <main>
-  <!-- Home Page -->
+  <!-- Home -->
   <div id="home" class="section active">
     <h2>Welcome to Jellico Hardware</h2>
     <p>Your local hardware store — now online.</p>
     <a class="button" onclick="showPage('shop')">Shop Now</a>
   </div>
 
-  <!-- Shop Page -->
+  <!-- Shop -->
   <div id="shop" class="section">
     <h2>Shop</h2>
     
@@ -61,7 +154,7 @@
       <div class="product"><h3>Plywood Sheet</h3><p>$29.99</p><button onclick="addToCart('Plywood Sheet',29.99)">Add to Cart</button></div>
       <div class="product"><h3>Treated Lumber</h3><p>$6.99</p><button onclick="addToCart('Treated Lumber',6.99)">Add to Cart</button></div>
     </div>
-    
+
     <h3>Tools</h3>
     <div class="products">
       <div class="product"><h3>Hammer</h3><p>$12.99</p><button onclick="addToCart('Hammer',12.99)">Add to Cart</button></div>
@@ -99,7 +192,7 @@
 
   </div>
 
-  <!-- Cart Page -->
+  <!-- Cart -->
   <div id="cart" class="section">
     <h2>Your Cart</h2>
     <ul id="cart-items"></ul>
@@ -107,7 +200,7 @@
     <button onclick="checkout()">Checkout</button>
   </div>
 
-  <!-- Contact Page -->
+  <!-- Contact -->
   <div id="contact" class="section">
     <h2>Contact Us</h2>
     <p>📍 Jellico, TN</p>
@@ -131,6 +224,7 @@
 
   function addToCart(name, price) {
     cart.push({name, price});
+    updateBadge();
     alert(name + " added to cart!");
   }
 
@@ -153,6 +247,10 @@
     } else {
       alert("Checkout coming soon! Total: $" + cart.reduce((a,b)=>a+b.price,0).toFixed(2));
     }
+  }
+
+  function updateBadge() {
+    document.getElementById('cart-badge').textContent = cart.length;
   }
 </script>
 
