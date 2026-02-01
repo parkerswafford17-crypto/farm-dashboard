@@ -21,99 +21,50 @@ body {
 }
 
 /* HEADER */
-header {
-  background:var(--blue);
-  color:white;
-}
-
+header { background:var(--blue); color:white; }
 .top-bar {
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:15px 20px;
+  display:flex; align-items:center; gap:20px; padding:15px 20px;
 }
-
-.logo {
-  font-size:1.6em;
-  font-weight:700;
-}
-
-.search {
-  flex:1;
-}
-
+.logo { font-size:1.6em; font-weight:700; }
+.search { flex:1; }
 .search input {
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:4px;
+  width:100%; padding:10px; border:none; border-radius:4px;
 }
-
-.cart-link {
-  cursor:pointer;
-  font-weight:bold;
-}
+.cart-link { cursor:pointer; font-weight:bold; }
 
 /* CATEGORY NAV */
 .category-nav {
-  background:#003366;
-  display:flex;
-  gap:20px;
-  padding:10px 20px;
-  overflow-x:auto;
+  background:#003366; display:flex; gap:20px;
+  padding:10px 20px; overflow-x:auto;
 }
-
 .category-nav span {
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  white-space:nowrap;
+  color:white; font-weight:bold; cursor:pointer;
 }
 
 /* HERO */
 .hero {
   background:linear-gradient(to right,#004990,#2563eb);
-  color:white;
-  padding:50px 20px;
-  text-align:center;
+  color:white; padding:50px 20px; text-align:center;
 }
-
-.hero h1 {
-  font-size:2.5em;
-}
+.hero h1 { font-size:2.5em; }
 
 /* MAIN */
 main {
-  max-width:1300px;
-  margin:auto;
-  padding:30px 20px;
+  max-width:1300px; margin:auto; padding:30px 20px;
 }
-
 .section { display:none; }
 .section.active { display:block; }
 
 /* TABS */
 .shop-tabs {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:20px;
+  display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;
 }
-
 .shop-tab {
-  padding:10px 16px;
-  border:2px solid var(--blue);
-  background:white;
-  color:var(--blue);
-  font-weight:bold;
-  cursor:pointer;
-  border-radius:4px;
+  padding:10px 16px; border:2px solid var(--blue);
+  background:white; color:var(--blue);
+  font-weight:bold; cursor:pointer; border-radius:4px;
 }
-
-.shop-tab.active {
-  background:var(--blue);
-  color:white;
-}
+.shop-tab.active { background:var(--blue); color:white; }
 
 /* PRODUCTS */
 .products {
@@ -121,57 +72,35 @@ main {
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
-
 .product {
-  background:white;
-  padding:15px;
-  border-radius:6px;
+  background:white; padding:15px; border-radius:6px;
   box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
-
 .product img {
-  width:100%;
-  height:160px;
-  object-fit:contain;
-  margin-bottom:10px;
+  width:100%; height:160px; object-fit:cover;
+  border-radius:4px; margin-bottom:10px;
 }
-
 .price {
-  font-weight:bold;
-  color:var(--blue);
-  margin:8px 0;
+  font-weight:bold; color:var(--blue); margin:8px 0;
 }
-
 .product button {
-  width:100%;
-  padding:10px;
-  background:var(--accent);
-  color:white;
-  border:none;
-  border-radius:4px;
-  cursor:pointer;
-  font-weight:bold;
+  width:100%; padding:10px;
+  background:var(--accent); color:white;
+  border:none; border-radius:4px;
+  cursor:pointer; font-weight:bold;
 }
 
 /* CART */
-#cart-items {
-  list-style:none;
-  padding:0;
-}
-
+#cart-items { list-style:none; padding:0; }
 #cart-items li {
-  background:white;
-  padding:10px;
-  margin-bottom:8px;
-  border-radius:4px;
+  background:white; padding:10px;
+  margin-bottom:8px; border-radius:4px;
 }
 
 /* FOOTER */
 footer {
-  background:#e6f0fa;
-  padding:30px;
-  text-align:center;
-  margin-top:40px;
+  background:#e6f0fa; padding:30px;
+  text-align:center; margin-top:40px;
 }
 </style>
 </head>
@@ -220,6 +149,7 @@ footer {
   <button class="shop-tab" onclick="showCategory('paint',this)">Paint</button>
 </div>
 
+<!-- LUMBER -->
 <div id="lumber" class="products">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
@@ -235,6 +165,7 @@ footer {
   </div>
 </div>
 
+<!-- TOOLS -->
 <div id="tools" class="products" style="display:none;">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1590080877777-8c9e3c61bcb4">
@@ -246,19 +177,21 @@ footer {
     <img src="https://images.unsplash.com/photo-1586864387789-628af9feed72">
     <h3>Cordless Drill</h3>
     <div class="price">$79.99</div>
-    <button onclick="add('Drill',79.99)">Add</button>
+    <button onclick="add('Cordless Drill',79.99)">Add</button>
   </div>
 </div>
 
+<!-- FASTENERS -->
 <div id="fasteners" class="products" style="display:none;">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1616627986767-53edc0b0c8e4">
     <h3>Box of Screws</h3>
     <div class="price">$6.99</div>
-    <button onclick="add('Screws',6.99)">Add</button>
+    <button onclick="add('Box of Screws',6.99)">Add</button>
   </div>
 </div>
 
+<!-- ELECTRICAL -->
 <div id="electrical" class="products" style="display:none;">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
@@ -268,6 +201,7 @@ footer {
   </div>
 </div>
 
+<!-- PLUMBING -->
 <div id="plumbing" class="products" style="display:none;">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1616627459509-25e5c5b5b8f0">
@@ -277,6 +211,7 @@ footer {
   </div>
 </div>
 
+<!-- PAINT -->
 <div id="paint" class="products" style="display:none;">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344">
@@ -311,8 +246,7 @@ footer {
 </footer>
 
 <script>
-let cart=[];
-let total=0;
+let cart=[], total=0;
 
 function add(name,price){
   cart.push({name,price});
