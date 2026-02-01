@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jellico Hardware</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -25,13 +24,7 @@ header{background:var(--blue);color:white}
 .hero{background:linear-gradient(to right,#004990,#2563eb);color:white;text-align:center;padding:40px}
 
 .container{display:flex;max-width:1400px;margin:auto}
-.sidebar{
-  width:220px;
-  background:white;
-  padding:15px;
-  border-radius:6px;
-  margin:20px;
-}
+.sidebar{width:220px;background:white;padding:15px;border-radius:6px;margin:20px}
 .sidebar h3{margin-top:0}
 .sidebar div{cursor:pointer;padding:8px;font-weight:bold;color:#004990}
 .sidebar div:hover{background:#eef3fb}
@@ -40,51 +33,20 @@ main{flex:1;padding:20px}
 .section{display:none}
 .section.active{display:block}
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px
-}
-.product{
-  background:white;
-  padding:15px;
-  border-radius:6px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08)
-}
-.product img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:4px
-}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.product{background:white;padding:15px;border-radius:6px;box-shadow:0 4px 10px rgba(0,0,0,.08)}
+.product img{width:100%;height:160px;object-fit:cover;border-radius:4px}
 .price{color:var(--blue);font-weight:bold}
 .sale{color:red;font-weight:bold}
 .qty{width:60px;padding:6px;margin-top:5px}
-.product button{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  background:var(--accent);
-  color:white;
-  border:none;
-  border-radius:4px
-}
+.product button{width:100%;padding:10px;margin-top:8px;background:var(--accent);color:white;border:none;border-radius:4px}
 
-.cart-item{
-  background:white;
-  padding:10px;
-  margin-bottom:8px;
-  border-radius:4px;
-  display:flex;
-  justify-content:space-between
-}
+.cart-item{background:white;padding:10px;margin-bottom:8px;border-radius:4px;display:flex;justify-content:space-between}
 
-footer{
-  background:#e6f0fa;
-  padding:20px;
-  text-align:center
-}
+footer{background:#e6f0fa;padding:20px;text-align:center}
 footer span{margin:0 10px;font-weight:bold;color:#004990;cursor:pointer}
+
+.admin input{width:100%;padding:6px;margin-bottom:6px}
 
 @media(max-width:800px){
   .container{flex-direction:column}
@@ -92,138 +54,112 @@ footer span{margin:0 10px;font-weight:bold;color:#004990;cursor:pointer}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="top-bar">
-    <div class="logo">Jellico Hardware</div>
-    <div class="search">
-      <input id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
-    </div>
-    <div class="cart-link" onclick="showPage('cart')">
-      Cart (<span id="cartCount">0</span>)
-    </div>
-  </div>
+<div class="top-bar">
+<div class="logo">Jellico Hardware</div>
+<div class="search">
+<input id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+</div>
+<div class="cart-link" onclick="showPage('cart')">
+Cart (<span id="cartCount">0</span>)
+</div>
+</div>
 </header>
 
 <div class="hero">
-  <h1>Your Local Hardware Store</h1>
-  <p>Tools • Lumber • Farm • Home Improvement</p>
+<h1>Your Local Hardware Store</h1>
+<p>Tools • Lumber • Farm • Home Improvement</p>
 </div>
 
 <div class="container">
 
-<!-- SIDEBAR -->
 <div class="sidebar">
-  <h3>Categories</h3>
-  <div onclick="filterCategory('all')">All Products</div>
-  <div onclick="filterCategory('lumber')">Lumber</div>
-  <div onclick="filterCategory('tools')">Tools</div>
-  <div onclick="filterCategory('fasteners')">Fasteners</div>
-  <div onclick="filterCategory('electrical')">Electrical</div>
-  <div onclick="filterCategory('plumbing')">Plumbing</div>
-  <div onclick="filterCategory('paint')">Paint</div>
-  <div onclick="filterCategory('sale')">🔥 Sales & Clearance</div>
+<h3>Categories</h3>
+<div onclick="filterCategory('all')">All Products</div>
+<div onclick="filterCategory('lumber')">Lumber</div>
+<div onclick="filterCategory('tools')">Tools</div>
+<div onclick="filterCategory('fasteners')">Fasteners</div>
+<div onclick="filterCategory('electrical')">Electrical</div>
+<div onclick="filterCategory('plumbing')">Plumbing</div>
+<div onclick="filterCategory('paint')">Paint</div>
+<div onclick="filterCategory('sale')">🔥 Sales & Clearance</div>
+<div style="margin-top:20px;cursor:pointer;color:red;font-weight:bold" onclick="showPage('admin')">Admin Panel</div>
 </div>
 
 <main>
-
 <!-- SHOP -->
 <div id="shop" class="section active">
-  <div class="products" id="productList">
-
-    <!-- LUMBER -->
-    <div class="product lumber">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-      <h3>2x4 Lumber</h3>
-      <div class="price">$4.99</div>
-      Qty <input class="qty" type="number" value="1" min="1">
-      <button onclick="addItem(this,'2x4 Lumber',4.99)">Add to Cart</button>
-    </div>
-
-    <div class="product lumber">
-      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e">
-      <h3>Pressure Treated Post</h3>
-      <div class="price">$14.99</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'PT Post',14.99)">Add</button>
-    </div>
-
-    <!-- TOOLS -->
-    <div class="product tools">
-      <img src="https://images.unsplash.com/photo-1586864387789-628af9feed72">
-      <h3>Cordless Drill</h3>
-      <div class="price">$79.99</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'Cordless Drill',79.99)">Add</button>
-    </div>
-
-    <div class="product tools sale">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
-      <h3>Tool Set</h3>
-      <div class="sale">$49.99 (Clearance)</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'Tool Set',49.99)">Add</button>
-    </div>
-
-    <!-- FASTENERS -->
-    <div class="product fasteners">
-      <img src="https://images.unsplash.com/photo-1616627986767-53edc0b0c8e4">
-      <h3>Wood Screws</h3>
-      <div class="price">$6.99</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'Wood Screws',6.99)">Add</button>
-    </div>
-
-    <!-- ELECTRICAL -->
-    <div class="product electrical sale">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>Wire Roll</h3>
-      <div class="sale">$19.99 (Sale)</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'Wire Roll',19.99)">Add</button>
-    </div>
-
-    <!-- PLUMBING -->
-    <div class="product plumbing">
-      <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4">
-      <h3>PVC Pipe</h3>
-      <div class="price">$9.99</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'PVC Pipe',9.99)">Add</button>
-    </div>
-
-    <!-- PAINT -->
-    <div class="product paint">
-      <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344">
-      <h3>Interior Paint</h3>
-      <div class="price">$25.99</div>
-      Qty <input class="qty" type="number" value="1">
-      <button onclick="addItem(this,'Interior Paint',25.99)">Add</button>
-    </div>
-
-  </div>
+<div class="products" id="productList"></div>
 </div>
 
 <!-- CART -->
 <div id="cart" class="section">
-  <h2>Your Cart</h2>
-  <div id="cartItems"></div>
-  <h3>Total: $<span id="total">0.00</span></h3>
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<h3>Total: $<span id="total">0.00</span></h3>
 </div>
 
+<!-- ADMIN -->
+<div id="admin" class="section">
+<h2>Admin Panel</h2>
+<div class="admin">
+<h3>Add New Product</h3>
+<input id="newName" placeholder="Product Name">
+<input id="newPrice" placeholder="Price">
+<input id="newCategory" placeholder="Category">
+<input id="newImage" placeholder="Image URL">
+<input type="checkbox" id="newSale"> Sale/Clearance
+<button onclick="addNewProduct()">Add Product</button>
+
+<h3>Edit Existing Product</h3>
+<input id="editIndex" placeholder="Product Index (start 0)">
+<input id="editPrice" placeholder="New Price">
+<input id="editImage" placeholder="New Image URL">
+<input type="checkbox" id="editSale"> Sale/Clearance
+<button onclick="editProduct()">Update Product</button>
+</div>
+</div>
 </main>
 </div>
 
 <footer>
-© Jellico Hardware |
-<span onclick="showPage('shop')">Shop</span>
+© Jellico Hardware
 </footer>
 
 <script>
-let cart=[],total=0;
+// Product data
+let products=[
+{name:"2x4 Lumber",price:4.99,category:"lumber",image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c",sale:false},
+{name:"Pressure Treated Post",price:14.99,category:"lumber",image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e",sale:false},
+{name:"Cordless Drill",price:79.99,category:"tools",image:"https://images.unsplash.com/photo-1586864387789-628af9feed72",sale:false},
+{name:"Tool Set",price:49.99,category:"tools",image:"https://images.unsplash.com/photo-1519710164239-da123dc03ef4",sale:true},
+{name:"Wood Screws",price:6.99,category:"fasteners",image:"https://images.unsplash.com/photo-1616627986767-53edc0b0c8e4",sale:false},
+{name:"Wire Roll",price:19.99,category:"electrical",image:"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789",sale:true},
+{name:"PVC Pipe",price:9.99,category:"plumbing",image:"https://images.unsplash.com/photo-1621905252507-b35492cc74b4",sale:false},
+{name:"Interior Paint",price:25.99,category:"paint",image:"https://images.unsplash.com/photo-1598300056393-4aac492f4344",sale:false}
+];
 
+function renderProducts(){
+  const container=document.getElementById("productList");
+  container.innerHTML="";
+  products.forEach((p,i)=>{
+    const div=document.createElement("div");
+    div.className="product "+p.category+(p.sale?" sale":"");
+    div.innerHTML=`
+      <img src="${p.image}">
+      <h3>${p.name}</h3>
+      <div class="${p.sale?'sale':'price'}">${p.sale?`$${p.price.toFixed(2)} (Sale)`:`$${p.price.toFixed(2)}`}</div>
+      Qty <input class="qty" type="number" value="1" min="1">
+      <button onclick="addItem(this,'${p.name}',${p.price})">Add</button>
+    `;
+    container.appendChild(div);
+  });
+}
+renderProducts();
+
+let cart=[],total=0;
 function addItem(btn,name,price){
   let qty=btn.previousElementSibling.value;
   qty=parseInt(qty);
@@ -233,28 +169,24 @@ function addItem(btn,name,price){
   }
   updateCart();
 }
-
 function updateCart(){
   document.getElementById("cartCount").textContent=cart.length;
-  let list=document.getElementById("cartItems");
+  const list=document.getElementById("cartItems");
   if(!list) return;
   list.innerHTML="";
   cart.forEach((item,i)=>{
-    let d=document.createElement("div");
+    const d=document.createElement("div");
     d.className="cart-item";
-    d.innerHTML=`${item.name} - $${item.price.toFixed(2)}
-    <button onclick="removeItem(${i})">X</button>`;
+    d.innerHTML=`${item.name} - $${item.price.toFixed(2)} <button onclick="removeItem(${i})">X</button>`;
     list.appendChild(d);
   });
   document.getElementById("total").textContent=total.toFixed(2);
 }
-
 function removeItem(i){
   total-=cart[i].price;
   cart.splice(i,1);
   updateCart();
 }
-
 function showPage(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -262,15 +194,42 @@ function showPage(id){
 
 function filterCategory(cat){
   document.querySelectorAll(".product").forEach(p=>{
-    p.style.display=(cat==="all"||p.classList.contains(cat))?"block":"none";
+    p.style.display=(cat==="all"||p.classList.contains(cat)||(cat==="sale"&&p.classList.contains("sale")) )?"block":"none";
   });
 }
-
 function filterProducts(){
   let q=document.getElementById("searchInput").value.toLowerCase();
   document.querySelectorAll(".product").forEach(p=>{
     p.style.display=p.innerText.toLowerCase().includes(q)?"block":"none";
   });
+}
+
+// Admin functions
+function addNewProduct(){
+  const name=document.getElementById("newName").value;
+  const price=parseFloat(document.getElementById("newPrice").value);
+  const category=document.getElementById("newCategory").value.toLowerCase();
+  const image=document.getElementById("newImage").value;
+  const sale=document.getElementById("newSale").checked;
+  if(name && !isNaN(price) && category && image){
+    products.push({name,price,category,image,sale});
+    renderProducts();
+    alert("Product added!");
+  }else alert("Fill all fields!");
+}
+
+function editProduct(){
+  const index=parseInt(document.getElementById("editIndex").value);
+  const price=parseFloat(document.getElementById("editPrice").value);
+  const image=document.getElementById("editImage").value;
+  const sale=document.getElementById("editSale").checked;
+  if(products[index]){
+    if(!isNaN(price)) products[index].price=price;
+    if(image) products[index].image=image;
+    products[index].sale=sale;
+    renderProducts();
+    alert("Product updated!");
+  }else alert("Invalid index!");
 }
 </script>
 
